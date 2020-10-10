@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:konsrr/src/app/theme.dart';
 import 'package:konsrr/src/auth/controller/auth_controller.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class AuthScreen extends StatelessWidget {
   final controller = AuthController();
@@ -15,11 +16,22 @@ class AuthScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.asset(
-                'assets/images/auth_image_asset.png',
-                width: Get.width,
+              Flexible(
+                flex: 6,
+                child: Stack(
+                  children: <Widget>[
+                    Center(child: CircularProgressIndicator()),
+                    Center(
+                      child: Image.asset(
+                        "assets/images/auth_image_asset.png",
+                        width: Get.width,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Flexible(
+                flex: 2,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
                   child: Column(

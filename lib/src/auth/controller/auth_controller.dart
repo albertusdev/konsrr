@@ -1,11 +1,10 @@
 import 'dart:async';
-import 'dart:async';
 import 'dart:core';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:konsrr/src/app/screens/home_screen.dart';
+import 'package:konsrr/src/app/screens/navigation_screen.dart';
 import 'package:konsrr/src/auth/screens/auth_screen.dart';
 
 class AuthController extends GetxController {
@@ -28,18 +27,19 @@ class AuthController extends GetxController {
     });
   }
 
-
   dispose() {
     _userStreamSubscription.cancel();
   }
 
   void _redirectAfterSignedIn() {
-    Get.off(HomeScreen());
+    Get.off(NavigationScreen());
   }
-  
+
   void redirectBasedOnAuthState() {
-    if (isSignedIn) _redirectAfterSignedIn();
-    else Get.offAll(AuthScreen());
+    if (isSignedIn)
+      _redirectAfterSignedIn();
+    else
+      Get.off(AuthScreen());
   }
 
   Future signInWithGoogle() async {
@@ -55,14 +55,18 @@ class AuthController extends GetxController {
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
-      await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
       final authResult =
           await FirebaseAuth.instance.signInWithCredential(credential);
       this.user.value = authResult.user;
       _redirectAfterSignedIn();
     } catch (e) {
       this.isCurrentlySigningIn.value = false;
-      Get.showSnackbar(GetBar(title: 'Something is wrong. Please try again'));
+      Get.showSnackbar(GetBar(
+        title: 'Sign-in failed.',
+        message: 'Something is wrong. Please try again.',
+        isDismissible: true,
+      ));
+      rethrow;
     }
   }
 

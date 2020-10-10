@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:konsrr/main.dart';
 import 'package:konsrr/src/app/app.dart';
 
 void main() {
