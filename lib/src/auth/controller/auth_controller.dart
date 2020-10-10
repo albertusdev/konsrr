@@ -49,7 +49,9 @@ class AuthController extends GetxController {
     }
     try {
       isCurrentlySigningIn.value = true;
-      final account = await google.signIn();
+      final account = await google.isSignedIn()
+          ? await google.signInSilently()
+          : await google.signIn();
       final googleSignInAuthentication = await account.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
@@ -72,6 +74,7 @@ class AuthController extends GetxController {
 
   Future signOut() async {
     await FirebaseAuth.instance.signOut();
+    await google.signOut();
     Get.offAll(AuthScreen());
   }
 }
