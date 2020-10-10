@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:konsrr/src/app/theme.dart';
 import 'package:konsrr/src/auth/controller/auth_controller.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class AuthScreen extends StatelessWidget {
   final controller = AuthController();

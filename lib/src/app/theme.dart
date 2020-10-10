@@ -20,9 +20,29 @@ class AppThemes {
     );
   }
 
+  static OutlinedButtonThemeData createOutlinedButtonTheme(ThemeData theme) {
+    final colorScheme = theme.colorScheme;
+    return OutlinedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: colorScheme.primary,
+        onPrimary: colorScheme.onPrimary,
+        onSurface: colorScheme.onSurface,
+        shadowColor: theme.shadowColor,
+        textStyle: theme.textTheme.button,
+        visualDensity: theme.visualDensity,
+        tapTargetSize: theme.materialTapTargetSize,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18.0),
+        ),
+      ),
+    );
+  }
+
+  static TextTheme createTextTheme(TextTheme theme) => GoogleFonts.latoTextTheme(theme);
+
   static ThemeData create() {
     final orig = ThemeData.dark();
-    final textTheme = GoogleFonts.latoTextTheme(orig.textTheme);
+    final textTheme = createTextTheme(orig.textTheme);
     final base = ThemeData(
       brightness: Brightness.dark,
       primaryColor: AppColors.primary,
@@ -47,6 +67,7 @@ class AppThemes {
     );
     return base.copyWith(
       elevatedButtonTheme: createElevatedButtonTheme(base),
+      outlinedButtonTheme: createOutlinedButtonTheme(base),
     );
   }
 
