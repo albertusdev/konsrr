@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "103917595655",
+    "firebase_url": "https://konsrr.firebaseio.com",
+    "project_id": "konsrr",
+    "storage_bucket": "konsrr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103917595655:android:158a55f147dad5e01a0ea2",
+        "android_client_info": {
+          "package_name": "com.konsrr.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103917595655-pibcpau5s2q2d381pbl5ht93hsuuktt2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-BQO6v50TsMn52q22mw9FeIRi0AfJbNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103917595655-pibcpau5s2q2d381pbl5ht93hsuuktt2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "103917595655-mum98ndrdrp3otuin102du7q66kgrah5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.konsrr.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
