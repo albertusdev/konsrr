@@ -2,10 +2,13 @@
 
 A new Flutter project.
 
-## Web Installation
+## Installation
 1. Use Flutter channel beta (`flutter channel beta`)
 2. Enable web config `flutter config --enable-web`
-3. To test on web, run `flutter run -d web`
+3. Run `flutter pub get` to install dependencies
+4. Run code generator before running the app `flutter pub run build_runner build --delete-conflicting-outputs`
+5. To test on web, run `flutter run -d web`
+
 
 ## Getting Started
 
