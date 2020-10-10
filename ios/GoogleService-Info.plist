@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>103917595655-mum98ndrdrp3otuin102du7q66kgrah5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.103917595655-mum98ndrdrp3otuin102du7q66kgrah5</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>103917595655-3at7rkqungoqa4iq8jsobct143u2k60v.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDltSbWGKP-MR0UEKBezNTyBPq3MM15v_4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>103917595655</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.konsrr.app</string>
+	<key>PROJECT_ID</key>
+	<string>konsrr</string>
+	<key>STORAGE_BUCKET</key>
+	<string>konsrr.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:103917595655:ios:13784aca0ec3d80f1a0ea2</string>
+	<key>DATABASE_URL</key>
+	<string>https://konsrr.firebaseio.com</string>
+</dict>
+</plist>
