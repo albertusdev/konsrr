@@ -12,9 +12,14 @@ class ConcertRepository {
       query: concertsCollection,
       limit: 10,
       decode: (snap, col) {
-        return Concert(snapshot: snap, collectionRef: col);
+        return Concert(snapshot: snap);
       }
     );
    return query;
+  }
+
+  static Future<Concert> getConcert(String id) async {
+    final ref = FirebaseFirestore.instance.collection('concerts').doc(id);
+    return Concert(snapshot: await ref.get());
   }
 }

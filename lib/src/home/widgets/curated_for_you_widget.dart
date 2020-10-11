@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:konsrr/src/concerts/repositories/concert_repository.dart';
 import 'package:konsrr/src/concerts/widgets/concert_list_widget.dart';
 
-class TrendingNowWidget extends StatelessWidget {
+class CuratedForYouWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -11,7 +11,7 @@ class TrendingNowWidget extends StatelessWidget {
       children: [
         SizedBox(height: 16.0),
         Text(
-          'Trending Now! 🔥',
+          'Curated for you 😉',
           style: Theme.of(context).accentTextTheme.headline6,
         ),
         SizedBox(height: 8.0),

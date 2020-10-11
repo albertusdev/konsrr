@@ -6,7 +6,7 @@ class AppThemes {
     final colorScheme = theme.colorScheme;
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        primary: colorScheme.primary,
+        primary: Color(0xFFFF6F61),
         onPrimary: colorScheme.onPrimary,
         onSurface: colorScheme.onSurface,
         shadowColor: theme.shadowColor,
@@ -14,8 +14,9 @@ class AppThemes {
         visualDensity: theme.visualDensity,
         tapTargetSize: theme.materialTapTargetSize,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
+          borderRadius: BorderRadius.circular(32.0),
         ),
+        padding: EdgeInsets.symmetric(vertical: 16.0),
       ),
     );
   }
@@ -56,14 +57,41 @@ class AppThemes {
       disabledColor: AppColors.lightGrey,
       scaffoldBackgroundColor: AppColors.black,
       appBarTheme: AppBarTheme(
-        color: orig.scaffoldBackgroundColor,
+        color: AppColors.black,
         textTheme: textTheme.copyWith(
           headline6: AppThemes.titleTextStyle.copyWith(
             fontSize: 18,
           ),
         ),
+        iconTheme: IconThemeData(
+          color: AppColors.primary,
+        ),
       ),
       textTheme: textTheme,
+      primaryTextTheme: textTheme.copyWith(
+        headline1: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline2: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline3: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline4: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline5: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline6: textTheme.headline1.copyWith(color: AppColors.primary),
+        subtitle1: textTheme.headline1.copyWith(color: AppColors.primary),
+        subtitle2: textTheme.headline1.copyWith(color: AppColors.primary),
+        bodyText1: textTheme.headline1.copyWith(color: AppColors.primary),
+        bodyText2: textTheme.headline1.copyWith(color: AppColors.primary),
+      ),
+      accentTextTheme: textTheme.copyWith(
+        headline1: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        headline2: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        headline3: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        headline4: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        headline5: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        headline6: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        bodyText1: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        bodyText2: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        subtitle1: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+        subtitle2: textTheme.headline1.copyWith(color: AppColors.primaryVariant),
+      ),
     );
     return base.copyWith(
       elevatedButtonTheme: createElevatedButtonTheme(base),

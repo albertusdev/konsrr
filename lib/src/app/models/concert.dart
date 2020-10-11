@@ -58,6 +58,10 @@ class Concert extends Document<Concert> {
     return "$start - $end WIB";
   }
 
+  String get priceInRP {
+    return 'Rp ${price.round()}';
+  }
+
   @override
   void fromData(Map<String, dynamic> data) => _$fromData(this, data);
 }
