@@ -15,7 +15,7 @@ class ConcertCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: min(327, Get.width * 0.8),
-      height: 240,
+      height: 250,
       child: InkWell(
         onTap: () => Get.to(ConcertDetailWidget(concert: concert)),
         child: Card(
@@ -26,12 +26,12 @@ class ConcertCard extends StatelessWidget {
                 children: [
                   Container(
                     height: 148.0,
-                    decoration: BoxDecoration(
+                    decoration: concert.imageUrl != null ? BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(concert.imageUrl),
                         fit: BoxFit.cover,
                       ),
-                    ),
+                    ) : null,
                   ),
                   Align(
                     alignment: Alignment.topRight,

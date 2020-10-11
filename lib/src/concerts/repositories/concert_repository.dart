@@ -20,6 +20,8 @@ class ConcertRepository {
 
   static Future<Concert> getConcert(String id) async {
     final ref = FirebaseFirestore.instance.collection('concerts').doc(id);
-    return Concert(snapshot: await ref.get());
+    final snapshot = await ref.get();
+    if (!snapshot.exists) return null;
+    return Concert(snapshot: snapshot);
   }
 }
