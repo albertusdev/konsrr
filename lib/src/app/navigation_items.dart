@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:konsrr/src/app/screens/home_screen.dart';
+import 'package:konsrr/src/home/screens/home_screen.dart';
 import 'package:konsrr/src/app/screens/settings_screen.dart';
 
 class NavigationItem {

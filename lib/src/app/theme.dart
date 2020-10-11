@@ -87,4 +87,5 @@ class AppColors {
   static Color primaryVariant = Color(0xFFF2D6Ae);
   static Color black = Color(0xFF121212);
   static Color lightGrey = Color(0xFFBDBDBD);
+  static Color neutralGrey = Color(0xFF757575);
 }
