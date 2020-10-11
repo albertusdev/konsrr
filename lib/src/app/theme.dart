@@ -49,10 +49,13 @@ class AppThemes {
       primaryColor: AppColors.primary,
       primaryColorDark: AppColors.primaryDark,
       primaryColorLight: AppColors.primaryLight,
+      accentColor: AppColors.secondary,
       colorScheme: ColorScheme.dark(
         primary: AppColors.primary,
         onPrimary: Colors.white,
         surface: AppColors.black,
+        secondary: AppColors.secondary,
+        secondaryVariant: AppColors.secondaryVariant,
       ),
       disabledColor: AppColors.lightGrey,
       scaffoldBackgroundColor: AppColors.black,
@@ -114,6 +117,8 @@ class AppColors {
   static Color primaryDark = Color(0xFFc3413d);
   static Color primary2 = Color(0xFFFF6F61);
   static Color primaryVariant = Color(0xFFF2D6Ae);
+  static Color secondary = Color(0xFFF5B895);
+  static Color secondaryVariant = Color(0xFFF2D6AE);
   static Color black = Color(0xFF121212);
   static Color lightGrey = Color(0xFFBDBDBD);
   static Color neutralGrey = Color(0xFF757575);

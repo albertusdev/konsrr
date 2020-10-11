@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:konsrr/src/app/models/my_user.dart';
 import 'package:konsrr/src/app/screens/navigation_screen.dart';
 import 'package:konsrr/src/auth/screens/auth_screen.dart';
 
@@ -20,16 +21,35 @@ class AuthController extends GetxController {
 
   bool get isSignedIn => user.value != null;
   StreamSubscription _userStreamSubscription;
+  StreamSubscription _myUserStreamSubscription;
+
+  final Rx<MyUser> myUser = Rx<MyUser>(null);
 
   AuthController() {
     _userStreamSubscription =
         FirebaseAuth.instance.userChanges().listen((newUser) {
       user.value = newUser;
+      _myUserStreamSubscription?.cancel();
+      _myUserStreamSubscription = myUserDocument
+          .snapshots()
+          .listen((document) {
+        myUser.value = MyUser(snapshot: document);
+      });
     });
   }
 
+  DocumentReference get myUserDocument => FirebaseFirestore.instance
+      .collection('users')
+      .doc(user.value.uid);
+
+  String get name => myUser.value?.name ?? user.value.displayName;
+
+  String get initialName =>
+      name.split(" ").map((String word) => word[0].capitalize).join();
+
   dispose() {
     _userStreamSubscription.cancel();
+    _myUserStreamSubscription?.cancel();
   }
 
   void _redirectAfterSignedIn() {

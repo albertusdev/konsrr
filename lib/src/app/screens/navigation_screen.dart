@@ -23,6 +23,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.primaryVariant,
         unselectedItemColor: AppColors.lightGrey,
         items: [
