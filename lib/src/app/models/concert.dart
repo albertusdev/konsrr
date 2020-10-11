@@ -4,6 +4,8 @@ import 'package:flamingo_annotation/flamingo_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:konsrr/src/app/models/vendor.dart';
 
+import 'merchandise.dart';
+
 part 'concert.flamingo.dart';
 
 class Concert extends Document<Concert> {
@@ -39,6 +41,9 @@ class Concert extends Document<Concert> {
 
   @ModelField()
   Vendor vendor;
+
+  @ModelField()
+  List<Merchandise> merchandise;
 
   Concert({
     String id,

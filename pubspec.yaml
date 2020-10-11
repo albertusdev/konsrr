@@ -42,8 +42,9 @@ dependencies:
 
   json_annotation:
 
+  smooth_page_indicator:
   transparent_image: ^1.0.0
-
+  modal_bottom_sheet:
 
 dev_dependencies:
   flutter_test:

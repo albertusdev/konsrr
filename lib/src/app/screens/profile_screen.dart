@@ -163,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 16.0,
                               height: 16.0,
                               child: CircularProgressIndicator()))
-                      : Text('Save Profile'),
+                      : Text('SAVE PROFILE'),
                 ),
               ],
             ),

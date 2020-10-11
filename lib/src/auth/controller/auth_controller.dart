@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:konsrr/src/app/controllers/navigation_controller.dart';
 import 'package:konsrr/src/app/models/my_user.dart';
 import 'package:konsrr/src/app/screens/navigation_screen.dart';
 import 'package:konsrr/src/auth/screens/auth_screen.dart';
@@ -100,6 +101,7 @@ class AuthController extends GetxController {
     await FirebaseAuth.instance.signOut();
     await google.signOut();
     Get.offAll(AuthScreen());
+    Get.find<NavigationController>().changeIndex(0);
   }
 
   DocumentReference get userDocument =>

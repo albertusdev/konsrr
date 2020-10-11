@@ -4,10 +4,14 @@ import 'package:get/get.dart';
 import 'package:konsrr/src/app/constants.dart';
 import 'package:konsrr/src/app/constants.dart';
 import 'package:konsrr/src/app/http_client.dart';
+import 'package:konsrr/src/app/models/booking.dart';
 import 'package:konsrr/src/app/models/concert.dart';
+import 'package:konsrr/src/app/models/merchandise.dart';
 import 'package:konsrr/src/app/theme.dart';
 import 'package:konsrr/src/concerts/repositories/concert_repository.dart';
 import 'package:konsrr/src/concerts/widgets/wishlist_button.dart';
+
+import 'booking_screen.dart';
 
 class ConcertDetailWidget extends StatefulWidget {
   final Concert concert;
@@ -20,6 +24,10 @@ class ConcertDetailWidget extends StatefulWidget {
 
 class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
   Concert concert;
+  bool fromAds = false;
+  String adsId;
+
+  Booking booking = Booking();
 
   @override
   void initState() {
@@ -31,9 +39,12 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
     concert = widget.concert;
     if (widget.concert == null) {
       concert = await ConcertRepository.getConcert(Get.parameters['id']);
+      adsId = Get.parameters['adsId'];
+      fromAds = true;
       setState(() {});
     }
     if (concert != null) {
+      booking..concert = concert;
       totalPrice = concert.price.round();
       await Get.find<KonsrrApi>().updateSeenBy(concert);
     }
@@ -77,6 +88,7 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
                     children: [
                       Container(
                         height: 50,
+                        width: double.infinity,
                         margin: EdgeInsets.only(top: 20.0),
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.surface,
@@ -86,10 +98,24 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              blurRadius: 5.0,
+                              blurRadius: 0.0,
                               offset: Offset(0.0, -3.0),
                             ),
                           ],
+                        ),
+                        child: SizedBox(
+                          width: 60,
+                          child: Center(
+                            child: Container(
+                              margin: EdgeInsets.only(top: 8.0),
+                              height: 4,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.neutralGrey,
+                                borderRadius: BorderRadius.circular(32.0),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       Positioned(
@@ -106,13 +132,8 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
                   ),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: IntrinsicHeight(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: _buildList(context),
-                  ),
-                ),
+              SliverList(
+                delegate: SliverChildListDelegate(_buildList(context)),
               ),
             ],
           ),
@@ -194,15 +215,114 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
         child: Text(concert.description,
             style: TextStyle(fontSize: 16, color: AppColors.lightGrey)),
       ),
+      padLeft(context, child: SizedBox(height: 18.0)),
+      padLeftRight(
+        context,
+        child: Text(
+          'Get ${concert.artistName} Special Merchandise',
+          style: Theme.of(context).accentTextTheme.subtitle1,
+        ),
+      ),
+      SizedBox(height: 16.0),
+      padLeft(
+        context,
+        child: SizedBox(
+          height: 265,
+          child: ListView(scrollDirection: Axis.horizontal, children: [
+            for (var merchandise in concert.merchandise)
+              buildMerchandiseCard(merchandise)
+          ]),
+        ),
+      ),
+      SizedBox(height: 18.0),
       padLeftRight(
         context,
         marginTop: 16.0,
         child: ElevatedButton(
-          child: Text('BUY NOW  -  Rp${totalPrice}'),
-          onPressed: () {},
+          child: Text('BUY NOW  -  Rp${booking.totalPrice}'),
+          onPressed: () {
+            Get.to(BookingScreen(
+              booking: booking
+            ));
+          },
         ),
         marginBottom: 16.0,
       ),
     ];
+  }
+
+  Widget buildMerchandiseCard(Merchandise merchandise) {
+    return SizedBox(
+      width: Get.width * 0.4,
+      child: Center(
+        child: Card(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Column(
+            children: [
+              Container(
+                height: 150.0,
+                decoration: merchandise.imageURL != null
+                    ? BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(merchandise.imageURL),
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : null,
+              ),
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Column(
+                  children: [
+                    Text(
+                      merchandise.name,
+                      overflow: TextOverflow.clip,
+                      maxLines: 2,
+                      style: Theme.of(context).accentTextTheme.subtitle2,
+                    ),
+                    LayoutBuilder(
+                      builder: (_, constraint) => SizedBox(
+                        width: constraint.maxWidth,
+                        child: booking.hasMerchandise(merchandise)
+                            ? ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    booking.removeMerchandise(merchandise);
+                                  });
+                                  print(booking.hasMerchandise(merchandise));
+                                },
+                                child: Text(
+                                  'Added',
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .bodyText2,
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  primary:
+                                      Theme.of(context).colorScheme.onSurface,
+                                  padding: EdgeInsets.zero,
+                                ),
+                              )
+                            : OutlinedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    booking.addMerchandise(merchandise);
+                                  });
+                                },
+                                child:
+                                    Text('+ Rp ${merchandise.price.round()}'),
+                                style: OutlinedButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
