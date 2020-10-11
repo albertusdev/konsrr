@@ -7,6 +7,7 @@ import 'package:konsrr/src/app/http_client.dart';
 import 'package:konsrr/src/app/models/concert.dart';
 import 'package:konsrr/src/app/theme.dart';
 import 'package:konsrr/src/concerts/repositories/concert_repository.dart';
+import 'package:konsrr/src/concerts/widgets/wishlist_button.dart';
 
 class ConcertDetailWidget extends StatefulWidget {
   final Concert concert;
@@ -68,18 +69,34 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
             anchor: 0.3,
             slivers: [
               SliverToBoxAdapter(
-                child: Container(
-                  height: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
+                child: SizedBox(
+                  height: 70,
+                  child: Stack(
+                    children: [
                       Container(
                         height: 50,
+                        margin: EdgeInsets.only(top: 20.0),
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.surface,
                           borderRadius: BorderRadius.only(
-                            topLeft: const Radius.circular(24.0),
-                            topRight: const Radius.circular(24.0),
+                            topLeft: const Radius.circular(32.0),
+                            topRight: const Radius.circular(32.0),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 5.0,
+                              offset: Offset(0.0, -3.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        right: Get.width * 0.1,
+                        top: 0.0,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 10.0),
+                          child: WishlistButton(
+                            concert: concert,
                           ),
                         ),
                       ),
@@ -182,11 +199,8 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
           child: Text('BUY NOW  -  Rp${totalPrice}'),
           onPressed: () {},
         ),
+        marginBottom: 16.0,
       ),
-      Container(
-        height: Get.height,
-        color: theme.colorScheme.surface,
-      )
     ];
   }
 }

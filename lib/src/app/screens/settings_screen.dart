@@ -15,8 +15,8 @@ class SettingsScreen extends StatelessWidget {
             title: Text('Sign-out'),
             onTap: Get.find<AuthController>().signOut,
           ),
-        ]
-      )
+        ],
+      ),
     );
   }
 }

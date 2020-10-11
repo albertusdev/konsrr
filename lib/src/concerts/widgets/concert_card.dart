@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:konsrr/src/app/models/concert.dart';
 import 'package:konsrr/src/concerts/screen/concert_detail_widget.dart';
+import 'package:konsrr/src/concerts/widgets/wishlist_button.dart';
 
 class ConcertCard extends StatelessWidget {
   final Concert concert;
@@ -21,13 +22,29 @@ class ConcertCard extends StatelessWidget {
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: Column(
             children: [
-              Container(
-                  height: 148.0,
-                  decoration: BoxDecoration(
+              Stack(
+                children: [
+                  Container(
+                    height: 148.0,
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: NetworkImage(concert.imageUrl),
-                    fit: BoxFit.cover,
-                  ))),
+                        image: NetworkImage(concert.imageUrl),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: 8.0,
+                        right: 8.0,
+                      ),
+                      child: WishlistButton(concert: concert),
+                    ),
+                  )
+                ],
+              ),
               Container(
                   margin: EdgeInsets.all(12.0),
                   child: Column(

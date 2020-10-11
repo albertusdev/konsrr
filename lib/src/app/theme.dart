@@ -112,6 +112,7 @@ class AppColors {
   static Color primary = Color(0xFFfb7268);
   static Color primaryLight = Color(0xFFffa496);
   static Color primaryDark = Color(0xFFc3413d);
+  static Color primary2 = Color(0xFFFF6F61);
   static Color primaryVariant = Color(0xFFF2D6Ae);
   static Color black = Color(0xFF121212);
   static Color lightGrey = Color(0xFFBDBDBD);
