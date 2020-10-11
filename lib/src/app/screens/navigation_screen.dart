@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:konsrr/src/app/theme.dart';
 
 import '../navigation_items.dart';
@@ -14,7 +15,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: IndexedStack(
         index: activeIndex,
         children: [
@@ -24,7 +25,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.primaryVariant,
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
         unselectedItemColor: AppColors.lightGrey,
         items: [
           for (var item in navigationItems)

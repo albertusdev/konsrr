@@ -11,12 +11,23 @@ class MyTicketScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: horizontalMargin),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 16.0),
                 Text('My Purchased Ticket', style: Theme
                     .of(context)
                     .accentTextTheme
                     .headline6,),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "You don't have any purchased ticket yet."
+                          "\n Go to Home / your wishlist to buy a concert ticket!",
+                      style: Theme.of(context).accentTextTheme.bodyText2,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
               ],
             ),
           ),

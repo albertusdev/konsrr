@@ -29,12 +29,15 @@ class AuthController extends GetxController {
     _userStreamSubscription =
         FirebaseAuth.instance.userChanges().listen((newUser) {
       user.value = newUser;
+      print('user changes');
       _myUserStreamSubscription?.cancel();
-      _myUserStreamSubscription = myUserDocument
-          .snapshots()
-          .listen((document) {
-        myUser.value = MyUser(snapshot: document);
-      });
+      if (newUser != null) {
+        _myUserStreamSubscription = myUserDocument
+            .snapshots()
+            .listen((document) {
+          myUser.value = MyUser(snapshot: document);
+        });
+      }
     });
   }
 

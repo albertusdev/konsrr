@@ -5,7 +5,12 @@ import 'package:konsrr/src/auth/controller/auth_controller.dart';
 
 import 'profile_screen.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final authController = Get.find<AuthController>();
@@ -14,7 +19,7 @@ class SettingsScreen extends StatelessWidget {
       body: Column(
         children: [
           Obx(
-            () => ListTile(
+            () => authController.isSignedIn ? ListTile(
               leading: CircleAvatar(
                 child: Text(authController.initialName,
                     style: TextStyle(
@@ -23,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               title: Text(authController.name),
               subtitle: Text(authController.user.value.email),
-            ),
+            ) : SizedBox(),
           ),
           ListTile(
             leading: Icon(Icons.account_circle_outlined),
@@ -33,9 +38,20 @@ class SettingsScreen extends StatelessWidget {
             onTap: () => Get.to(ProfileScreen()),
           ),
           ListTile(
-            trailing: Icon(Icons.exit_to_app),
+            leading: Icon(Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round),
+            title: Text(Get.isDarkMode ? 'Change to light theme' : 'Change to dark theme'),
+            onTap: () {
+              Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
+              setState(() {});
+              setState(() {});
+            },
+            trailing: Icon(Icons.navigate_next),
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
             title: Text('Sign-out'),
             onTap: authController.signOut,
+            trailing: Icon(Icons.navigate_next),
           ),
         ],
       ),

@@ -41,7 +41,7 @@ class AppThemes {
 
   static TextTheme createTextTheme(TextTheme theme) => GoogleFonts.latoTextTheme(theme);
 
-  static ThemeData create() {
+  static ThemeData createDark() {
     final orig = ThemeData.dark();
     final textTheme = createTextTheme(orig.textTheme);
     final base = ThemeData(
@@ -54,7 +54,7 @@ class AppThemes {
         primary: AppColors.primary,
         onPrimary: Colors.white,
         surface: AppColors.black,
-        secondary: AppColors.secondary,
+        secondary: AppColors.primaryVariant,
         secondaryVariant: AppColors.secondaryVariant,
       ),
       disabledColor: AppColors.lightGrey,
@@ -64,6 +64,7 @@ class AppThemes {
         textTheme: textTheme.copyWith(
           headline6: AppThemes.titleTextStyle.copyWith(
             fontSize: 18,
+            color: AppColors.primaryVariant,
           ),
         ),
         iconTheme: IconThemeData(
@@ -102,11 +103,77 @@ class AppThemes {
     );
   }
 
+  static ThemeData createLight() {
+    final orig = ThemeData.light();
+    final textTheme = createTextTheme(orig.textTheme);
+    final base = ThemeData(
+      brightness: Brightness.light,
+      primaryColor: AppColors.primary,
+      primaryColorDark: AppColors.primaryDark,
+      primaryColorLight: AppColors.primaryLight,
+      accentColor: AppColors.secondary,
+      shadowColor: AppColors.lightGrey,
+      colorScheme: ColorScheme.light(
+        primary: AppColors.primary,
+        onPrimary: Colors.black,
+        surface: Colors.white,
+        secondary: AppColors.primary2,
+        secondaryVariant: AppColors.secondaryVariant,
+      ),
+      disabledColor: AppColors.lightGrey,
+      scaffoldBackgroundColor: AppColors.white,
+      appBarTheme: AppBarTheme(
+        color: AppColors.white,
+        textTheme: textTheme.copyWith(
+          headline6: AppThemes.titleTextStyle.copyWith(
+            fontSize: 18,
+            color: AppColors.primary2,
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: AppColors.primary,
+        ),
+      ),
+      textTheme: textTheme,
+      primaryTextTheme: textTheme.copyWith(
+        headline1: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline2: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline3: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline4: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline5: textTheme.headline1.copyWith(color: AppColors.primary),
+        headline6: textTheme.headline1.copyWith(color: AppColors.primary),
+        subtitle1: textTheme.headline1.copyWith(color: AppColors.primary),
+        subtitle2: textTheme.headline1.copyWith(color: AppColors.primary),
+        bodyText1: textTheme.headline1.copyWith(color: AppColors.primary),
+        bodyText2: textTheme.headline1.copyWith(color: AppColors.primary),
+      ),
+      accentTextTheme: textTheme.copyWith(
+        headline1: textTheme.headline1.copyWith(color: AppColors.primary2),
+        headline2: textTheme.headline1.copyWith(color: AppColors.primary2),
+        headline3: textTheme.headline1.copyWith(color: AppColors.primary2),
+        headline4: textTheme.headline1.copyWith(color: AppColors.primary2),
+        headline5: textTheme.headline1.copyWith(color: AppColors.primary2),
+        headline6: textTheme.headline1.copyWith(color: AppColors.primary2),
+        bodyText1: textTheme.headline1.copyWith(color: AppColors.primary2),
+        bodyText2: textTheme.headline1.copyWith(color: AppColors.primary2),
+        subtitle1: textTheme.headline1.copyWith(color: AppColors.primary2),
+        subtitle2: textTheme.headline1.copyWith(color: AppColors.primary2),
+      ),
+    );
+    return base.copyWith(
+      elevatedButtonTheme: createElevatedButtonTheme(base),
+      outlinedButtonTheme: createOutlinedButtonTheme(base),
+    );
+  }
+
+  static ThemeData light = createLight();
+  static ThemeData dark = createDark();
+
   static TextStyle get titleTextStyle {
     return GoogleFonts.barrio(
-      color: AppColors.primaryVariant,
       fontSize: 48.0,
       letterSpacing: 0.15,
+      color: AppColors.primaryVariant,
     );
   }
 }
@@ -122,4 +189,5 @@ class AppColors {
   static Color black = Color(0xFF121212);
   static Color lightGrey = Color(0xFFBDBDBD);
   static Color neutralGrey = Color(0xFF757575);
+  static Color white = Colors.white;
 }

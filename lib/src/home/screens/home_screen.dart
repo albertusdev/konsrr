@@ -41,12 +41,6 @@ class HomeScreen extends StatelessWidget {
                                 topLeft: const Radius.circular(32.0),
                                 topRight: const Radius.circular(32.0),
                               ),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 1.0,
-                                  offset: Offset(0.0, -3.0),
-                                ),
-                              ],
                             ),
                           ),
                         ],

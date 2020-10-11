@@ -7,7 +7,8 @@ import 'package:konsrr/src/concerts/screen/concert_detail_widget.dart';
 class KonsrrApp extends GetMaterialApp {
   KonsrrApp() : super(
     themeMode: ThemeMode.dark,
-    darkTheme: AppThemes.create(),
+    theme: AppThemes.light,
+    darkTheme: AppThemes.dark,
     initialRoute: '/splash',
     getPages: [
       GetPage(

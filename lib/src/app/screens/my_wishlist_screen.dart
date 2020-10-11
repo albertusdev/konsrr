@@ -42,7 +42,7 @@ class MyWishlistScreen extends StatelessWidget {
                   margin: EdgeInsets.only(left: horizontalMargin),
                   child: Text(
                     'My Wishlist',
-                    style: Theme.of(context).primaryTextTheme.headline6,
+                    style: Theme.of(context).accentTextTheme.headline6,
                     textAlign: TextAlign.start,
                   ),
                 ),
@@ -67,7 +67,7 @@ class MyWishlistScreen extends StatelessWidget {
                   margin: EdgeInsets.only(left: horizontalMargin),
                   child: Text(
                     'My Wishlist',
-                    style: Theme.of(context).primaryTextTheme.headline6,
+                    style: Theme.of(context).accentTextTheme.headline6,
                   ),
                 );
               }
