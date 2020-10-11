@@ -33,8 +33,10 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
       concert = await ConcertRepository.getConcert(Get.parameters['id']);
       setState(() {});
     }
-    totalPrice = concert.price.round();
-    await Get.find<KonsrrApi>().updateSeenBy(concert);
+    if (concert != null) {
+      totalPrice = concert.price.round();
+      await Get.find<KonsrrApi>().updateSeenBy(concert);
+    }
   }
 
   int totalPrice;

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:konsrr/src/app/widgets/ads_displayer_widget.dart';
 import 'package:konsrr/src/auth/controller/auth_controller.dart';
 import 'package:konsrr/src/home/widgets/curated_for_you_widget.dart';
 import 'package:konsrr/src/home/widgets/trending_now_widget.dart';
@@ -17,44 +18,69 @@ class HomeScreen extends StatelessWidget {
       builder: (context) => DefaultTextStyle(
         style: AppThemes.createTextTheme(Theme.of(context).textTheme).bodyText1,
         child: Scaffold(
-          body: Stack(
-            children: [
-              Container(
-                height: Get.height * adsHeightPercentage,
-                width: double.infinity,
-                color: Colors.green,
-              ),
-              CustomScrollView(
-                anchor: adsHeightPercentage,
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Container(
-                      height: 50,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.surface,
-                              borderRadius: BorderRadius.only(
-                                topLeft: const Radius.circular(32.0),
-                                topRight: const Radius.circular(32.0),
+          body: NestedScrollView(
+            headerSliverBuilder: (context, visible) {
+              return [
+                SliverAppBar(
+                  expandedHeight: Get.height * adsHeightPercentage,
+                  floating: false,
+                  pinned: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                    title: Visibility(
+                      visible: visible,
+                      child: AppBar(
+                        title: Text('konsrr'),
+                      ),
+                    ),
+                    titlePadding: EdgeInsets.zero,
+                    background: AdsDisplayerWidget(),
+                  ),
+                ),
+              ];
+            },
+            body: CustomScrollView(anchor: 0.0, slivers: [
+              SliverToBoxAdapter(
+                child: Container(
+                  height: 50,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        height: 50,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
+                          borderRadius: BorderRadius.only(
+                            topLeft: const Radius.circular(32.0),
+                            topRight: const Radius.circular(32.0),
+                          ),
+                          boxShadow: [],
+                        ),
+                        child: SizedBox(
+                          width: 60,
+                          child: Center(
+                            child: Container(
+                              margin: EdgeInsets.only(top: 8.0),
+                              height: 4,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.neutralGrey,
+                                borderRadius: BorderRadius.circular(32.0),
                               ),
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      _buildList(context),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ],
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  _buildList(context),
+                ),
+              ),
+            ]),
           ),
         ),
       ),
@@ -128,7 +154,8 @@ class HomeScreen extends StatelessWidget {
       padLeft(context, child: TrendingNowWidget()),
       padLeft(context, child: TrendingNowWidget()),
       padLeft(context, child: TrendingNowWidget()),
-      Container(color: Theme.of(context).colorScheme.surface, height: Get.height),
+      Container(
+          color: Theme.of(context).colorScheme.surface, height: Get.height),
     ];
   }
 }
