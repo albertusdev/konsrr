@@ -100,7 +100,7 @@ class AuthController extends GetxController {
   Future signOut() async {
     await FirebaseAuth.instance.signOut();
     await google.signOut();
-    Get.offAll(AuthScreen());
+    await Get.offAll(AuthScreen());
     Get.find<NavigationController>().changeIndex(0);
   }
 

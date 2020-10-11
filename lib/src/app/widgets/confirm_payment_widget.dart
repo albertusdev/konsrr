@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:konsrr/src/app/models/booking.dart';
 import 'package:konsrr/src/app/screens/payment_success_screen.dart';
 import 'package:konsrr/src/app/widgets/utils.dart';
+import 'package:konsrr/src/auth/controller/auth_controller.dart';
 
 class ConfirmPaymentWidget extends StatefulWidget {
   final Booking booking;
@@ -23,7 +24,10 @@ class _ConfirmPaymentWidgetState extends State<ConfirmPaymentWidget> {
             topLeft: const Radius.circular(16.0),
             topRight: const Radius.circular(16.0),
           ),
-          color: Theme.of(context).cardColor,
+          color: Theme
+              .of(context)
+              .colorScheme
+              .surface,
           boxShadow: [
             BoxShadow(
               blurRadius: 0.0,
@@ -44,7 +48,10 @@ class _ConfirmPaymentWidgetState extends State<ConfirmPaymentWidget> {
                     height: 4,
                     width: 60,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: Theme
+                          .of(context)
+                          .colorScheme
+                          .onSurface,
                       borderRadius: BorderRadius.circular(32.0),
                     ),
                   ),
@@ -87,9 +94,15 @@ class _ConfirmPaymentWidgetState extends State<ConfirmPaymentWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Total',
-                              style: Theme.of(context).textTheme.caption),
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .caption),
                           Text('Rp${widget.booking.totalPrice}',
-                              style: Theme.of(context).textTheme.headline5),
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .headline5),
                         ],
                       ),
                     ),
@@ -100,8 +113,10 @@ class _ConfirmPaymentWidgetState extends State<ConfirmPaymentWidget> {
               child: SizedBox(
                 width: Get.width * 0.8,
                 child: ElevatedButton(
-                  onPressed: handle,
-                  child: Text('CONFIRM & PAY'),
+                  onPressed: isLoading ? null : handle,
+                  child: isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : Text('CONFIRM & PAY'),
                 ),
               ),
             ),
@@ -110,7 +125,21 @@ class _ConfirmPaymentWidgetState extends State<ConfirmPaymentWidget> {
         ));
   }
 
-  void handle() {
+  bool isLoading = false;
+
+  Future handle() async {
+    setState(() {
+      isLoading = true;
+    });
+    final authController = Get.find<AuthController>();
+    await authController.myUserDocument
+        .collection('bookings')
+        .doc()
+        .set(widget.booking.toData());
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+      isLoading = false;
+    });
     Get.to(PaymentSuccessScreen(
       booking: widget.booking,
     ));

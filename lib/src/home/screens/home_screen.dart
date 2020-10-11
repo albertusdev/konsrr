@@ -123,23 +123,26 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Welcome, ${user.displayName}! 👋',
+                'Welcome, ${user?.displayName ?? ''}! 👋',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
               ),
               SizedBox(height: 16.0),
-              InkWell(
-                onTap: () =>
-                    Get.to(SearchScreen(), transition: Transition.downToUp),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(width: 1.0, color: Color(0xFFD1D0D1)),
-                  ),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                  child: Text(
-                    'Find your favorite concerts here...',
-                    style: Theme.of(context).textTheme.caption,
+              Visibility(
+                visible: false,
+                child: InkWell(
+                  onTap: () =>
+                      Get.to(SearchScreen(), transition: Transition.downToUp),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(width: 1.0, color: Color(0xFFD1D0D1)),
+                    ),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    child: Text(
+                      'Find your favorite concerts here...',
+                      style: Theme.of(context).textTheme.caption,
+                    ),
                   ),
                 ),
               ),
@@ -149,13 +152,7 @@ class HomeScreen extends StatelessWidget {
       ),
       padLeft(context, child: TrendingNowWidget()),
       padLeft(context, child: CuratedForYouWidget()),
-      padLeft(context, child: TrendingNowWidget()),
-      padLeft(context, child: TrendingNowWidget()),
-      padLeft(context, child: TrendingNowWidget()),
-      padLeft(context, child: TrendingNowWidget()),
-      padLeft(context, child: TrendingNowWidget()),
-      Container(
-          color: Theme.of(context).colorScheme.surface, height: Get.height),
+      padLeft(context, child: SizedBox(height: 64.0)),
     ];
   }
 }

@@ -69,4 +69,9 @@ class Concert extends Document<Concert> {
 
   @override
   void fromData(Map<String, dynamic> data) => _$fromData(this, data);
+
+  @override
+  Map<String, dynamic> toData() {
+    return _$toData(this);
+  }
 }

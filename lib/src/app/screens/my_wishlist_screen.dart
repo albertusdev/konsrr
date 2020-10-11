@@ -64,7 +64,7 @@ class MyWishlistScreen extends StatelessWidget {
             itemBuilder: (ctx, index) {
               if (index == 0) {
                 return Container(
-                  margin: EdgeInsets.only(left: horizontalMargin),
+                  margin: EdgeInsets.only(left: horizontalMargin, top: 32.0),
                   child: Text(
                     'My Wishlist',
                     style: Theme.of(context).accentTextTheme.headline6,

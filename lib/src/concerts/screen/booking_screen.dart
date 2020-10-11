@@ -145,14 +145,14 @@ class _BookingScreenState extends State<BookingScreen> {
         ..address = addressController.value.text
         ..birthDate = dateController.value.text;
       await authController.myUserDocument.set(user.toData());
+      showMaterialModalBottomSheet(
+        context: context,
+        builder: (context, _) => ConfirmPaymentWidget(booking: widget.booking),
+      );
     }
     setState(() {
       isSubmitting = false;
     });
-    showMaterialModalBottomSheet(
-      context: context,
-      builder: (context, _) => ConfirmPaymentWidget(booking: widget.booking),
-    );
   }
 
   Widget _buildForm(BuildContext context) {

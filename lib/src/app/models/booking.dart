@@ -14,7 +14,8 @@ class Booking {
     return base;
   }
 
-  Map<String, dynamic> toData() => {
+  Map<String, dynamic> toData() =>
+      {
         'concert': concert.toData(),
         'merchandise': [
           for (var merchandise in merchandises) merchandise.toData(),
@@ -30,4 +31,14 @@ class Booking {
 
   void removeMerchandise(Merchandise merchandise) =>
       merchandises.remove(merchandise);
+
+  static Booking fromData(Map<String, dynamic> data) {
+    final booking = Booking();
+    booking.concert = Concert(values: data['concert']);
+    for (var merchandise in data['merchandise']) {
+      final merchandiseModel = Merchandise(values: merchandise);
+      booking.merchandises.add(merchandiseModel);
+    }
+    return booking;
+  }
 }
