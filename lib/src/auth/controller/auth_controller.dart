@@ -30,7 +30,6 @@ class AuthController extends GetxController {
     _userStreamSubscription =
         FirebaseAuth.instance.userChanges().listen((newUser) {
       user.value = newUser;
-      print('user changes');
       _myUserStreamSubscription?.cancel();
       if (newUser != null) {
         _myUserStreamSubscription = myUserDocument
@@ -57,7 +56,7 @@ class AuthController extends GetxController {
   }
 
   void _redirectAfterSignedIn() {
-    Get.off(NavigationScreen());
+    Get.offAll(NavigationScreen());
   }
 
   void redirectBasedOnAuthState() {
@@ -88,9 +87,10 @@ class AuthController extends GetxController {
       _redirectAfterSignedIn();
     } catch (e) {
       this.isCurrentlySigningIn.value = false;
+      print(e);
       Get.showSnackbar(GetBar(
         title: 'Sign-in failed.',
-        message: 'Something is wrong. Please try again.',
+        message: 'Something is wrong. Please try again. $e',
         isDismissible: true,
       ));
       rethrow;
