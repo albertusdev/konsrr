@@ -212,20 +212,19 @@ class _BookingScreenState extends State<BookingScreen> {
                   Text('Birth Date',
                       style: Theme.of(context).accentTextTheme.bodyText1),
                   TextFormField(
-                    controller: dateController,
-                    validator: (String val) {
-                      final nonEmptyResult =
-                          nonEmptyValidator('Birth Date')(val);
-                      if (nonEmptyResult?.isEmpty ?? true) {
-                        if (!birthDateRegEx.hasMatch(val)) {
-                          return "Birth date must follow yyyy-mm-dd format (e.g: 1998-08-08)";
+                      controller: dateController,
+                      validator: (String val) {
+                        final nonEmptyResult =
+                            nonEmptyValidator('Birth Date')(val);
+                        if (nonEmptyResult?.isEmpty ?? true) {
+                          if (!birthDateRegEx.hasMatch(val)) {
+                            return "Birth date must follow yyyy-mm-dd format (e.g: 1998-08-08)";
+                          }
+                          return null;
                         }
-                        return null;
-                      }
-                      return nonEmptyResult;
-                    },
-                    keyboardType: TextInputType.datetime,
-                  ),
+                        return nonEmptyResult;
+                      },
+                      keyboardType: TextInputType.text),
                   SizedBox(height: 16.0),
                   Text('Shipping Address',
                       style: Theme.of(context).accentTextTheme.bodyText1),

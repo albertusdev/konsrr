@@ -62,11 +62,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ..address = addressController.value.text
         ..birthDate = dateController.value.text;
       await authController.myUserDocument.set(user.toData());
+      Get.back();
     }
     setState(() {
       isSubmitting = false;
     });
-    Get.back();
   }
 
   @override
@@ -140,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     }
                     return nonEmptyResult;
                   },
-                  keyboardType: TextInputType.datetime,
+                  keyboardType: TextInputType.text,
                 ),
                 SizedBox(height: 16.0),
                 Text('Shipping Address',

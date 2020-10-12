@@ -1,0 +1,14 @@
+## Link to Source Code (GitHub):
+https://github.com/konsrr
+
+Terdiri dari 3 repository:
+1. konsrr Consumer App (Flutter): [https://github.com/konsrr/konsrr](https://github.com/konsrr/konsrr)
+2. konsrr Vendor App (React): [https://github.com/konsrr/konsrr-vendor](https://github.com/konsrr/konsrr)
+3. konsrr Firebase Cloud Functions (JS): [https://github.com/konsrr/konsrr_cloud_functions](https://github.com/konsrr/konsrr)
+
+## Deployment Link:
+1. konsrr Consumer App versi web
+https://konsrr.netlify.app/
+
+2. konsrr Vendor App
+https://konsrr-vendor.netlify.app/
