@@ -109,7 +109,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
     phone = myUser?.phoneNumber ?? "";
     date = myUser?.birthDate ?? "";
     address = myUser?.address ?? "";
-    identificationNumber = myUser?.address ?? "";
+    identificationNumber = myUser?.identificationNumber ?? "";
   }
 
   Widget _buildForm(BuildContext context) {
@@ -152,7 +152,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                     date,
                   ),
                   SizedBox(height: 16.0),
-                  Text('Address',
+                  Text('Shipping Address',
                       style: Theme.of(context).accentTextTheme.bodyText1),
                   Text(
                     address,

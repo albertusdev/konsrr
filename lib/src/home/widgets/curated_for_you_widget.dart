@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:konsrr/src/concerts/repositories/concert_repository.dart';
 import 'package:konsrr/src/concerts/widgets/concert_list_widget.dart';
 
@@ -16,7 +15,7 @@ class CuratedForYouWidget extends StatelessWidget {
         ),
         SizedBox(height: 8.0),
         ConcertsListWidget.horizontal(
-          ConcertRepository.trendingNow,
+          ConcertRepository.forYou,
           height: 250,
         ),
       ],

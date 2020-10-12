@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     dateController = TextEditingController(text: myUser?.birthDate ?? "");
     addressController = TextEditingController(text: myUser?.address ?? "");
     identificationNumberController =
-        TextEditingController(text: myUser?.address ?? "");
+        TextEditingController(text: myUser?.identificationNumber ?? "");
   }
 
   String Function(String) nonEmptyValidator(String fieldName) => (String val) {
@@ -112,7 +111,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 TextFormField(
                   controller: phoneController,
                   validator: (String val) {
-                    final nonEmptyValidation = nonEmptyValidator('Phone Number')(val);
+                    final nonEmptyValidation =
+                        nonEmptyValidator('Phone Number')(val);
                     if (nonEmptyValidation?.isEmpty ?? true) {
                       if (GetUtils.isPhoneNumber(val)) {
                         return null;
@@ -143,7 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   keyboardType: TextInputType.datetime,
                 ),
                 SizedBox(height: 16.0),
-                Text('Address',
+                Text('Shipping Address',
                     style: Theme.of(context).accentTextTheme.bodyText1),
                 TextFormField(
                   controller: addressController,

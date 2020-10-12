@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Text(
           'konsrr',
-          style: AppThemes.titleTextStyle,
+          style : AppThemes.titleTextStyle,
           textAlign: TextAlign.center,
         ),
       ),

@@ -18,6 +18,17 @@ class ConcertRepository {
    return query;
   }
 
+  static CollectionPaging<Concert> get forYou {
+    final query = CollectionPaging<Concert>(
+        query: concertsCollection,
+        limit: 10,
+        decode: (snap, col) {
+          return Concert(snapshot: snap);
+        }
+    );
+    return query;
+  }
+
   static Future<Concert> getConcert(String id) async {
     final ref = FirebaseFirestore.instance.collection('concerts').doc(id);
     final snapshot = await ref.get();

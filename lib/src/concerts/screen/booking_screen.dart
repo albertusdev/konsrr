@@ -118,7 +118,7 @@ class _BookingScreenState extends State<BookingScreen> {
     dateController = TextEditingController(text: myUser?.birthDate ?? "");
     addressController = TextEditingController(text: myUser?.address ?? "");
     identificationNumberController =
-        TextEditingController(text: myUser?.address ?? "");
+        TextEditingController(text: myUser?.identificationNumber ?? "");
   }
 
   String Function(String) nonEmptyValidator(String fieldName) => (String val) {
@@ -227,7 +227,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     keyboardType: TextInputType.datetime,
                   ),
                   SizedBox(height: 16.0),
-                  Text('Address',
+                  Text('Shipping Address',
                       style: Theme.of(context).accentTextTheme.bodyText1),
                   TextFormField(
                     controller: addressController,
