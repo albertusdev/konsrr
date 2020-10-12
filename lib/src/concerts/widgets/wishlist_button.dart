@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:konsrr/src/app/http_client.dart';
 import 'package:konsrr/src/app/models/concert.dart';
 import 'package:konsrr/src/app/theme.dart';
 import 'package:konsrr/src/auth/controller/auth_controller.dart';
@@ -19,8 +20,9 @@ DocumentReference wishlistDocument(User user, Concert concert) =>
 
 class WishlistButton extends StatefulWidget {
   final Concert concert;
+  final String ads;
 
-  const WishlistButton({Key key, this.concert}) : super(key: key);
+  const WishlistButton({Key key, this.concert, this.ads}) : super(key: key);
 
   @override
   _WishlistButtonState createState() => _WishlistButtonState();
@@ -61,6 +63,10 @@ class _WishlistButtonState extends State<WishlistButton> {
       await wishlistDoc.set({
         'value': true,
       });
+      if (widget.ads != null) {
+        final resp = await Get.find<KonsrrApi>().incrementAdsWishlist(widget.ads);
+        print(resp);
+      }
     }
   }
 

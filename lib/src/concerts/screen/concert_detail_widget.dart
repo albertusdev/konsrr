@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:konsrr/src/app/constants.dart';
 import 'package:konsrr/src/app/constants.dart';
 import 'package:konsrr/src/app/http_client.dart';
 import 'package:konsrr/src/app/models/booking.dart';
@@ -41,6 +39,9 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
       concert = await ConcertRepository.getConcert(Get.parameters['id']);
       adsId = Get.parameters['adsId'];
       fromAds = true;
+      final resp = await Get.find<KonsrrApi>().incrementAdsClick(adsId);
+      booking.adsId = adsId;
+      booking.fromAds = true;
       setState(() {});
     }
     if (concert != null) {
@@ -125,6 +126,7 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
                           padding: EdgeInsets.only(bottom: 10.0),
                           child: WishlistButton(
                             concert: concert,
+                            ads: adsId,
                           ),
                         ),
                       ),
@@ -223,7 +225,7 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
           style: Theme.of(context).accentTextTheme.subtitle1,
         ),
       ),
-      SizedBox(height: 16.0),
+      padLeft(context, child: SizedBox(height: 16.0)),
       padLeft(
         context,
         child: SizedBox(
@@ -241,9 +243,7 @@ class _ConcertDetailWidgetState extends State<ConcertDetailWidget> {
         child: ElevatedButton(
           child: Text('BUY NOW  -  Rp${booking.totalPrice}'),
           onPressed: () {
-            Get.to(BookingScreen(
-              booking: booking
-            ));
+            Get.to(BookingScreen(booking: booking));
           },
         ),
         marginBottom: 16.0,

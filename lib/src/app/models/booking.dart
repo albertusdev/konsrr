@@ -5,6 +5,8 @@ class Booking {
   Concert concert;
   Set<Merchandise> merchandises = new Set();
   String paymentMethod;
+  bool fromAds = false;
+  String adsId;
 
   double get totalPrice {
     var base = concert.price;

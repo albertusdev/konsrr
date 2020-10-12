@@ -59,7 +59,7 @@ class _AdsDisplayerWidgetState extends State<AdsDisplayerWidget> {
               width: Get.width,
             ),
             onTap: () {
-              return Get.toNamed('/concert_detail?id=${ad.concert.id}');
+              return Get.toNamed('/concert_detail?id=${ad.concert.id}&adsId=${ad.id}');
             });
       }).toList(),
       options: CarouselOptions(

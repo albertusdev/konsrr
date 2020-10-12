@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:konsrr/src/app/http_client.dart';
 import 'package:konsrr/src/app/models/booking.dart';
 import 'package:konsrr/src/app/screens/payment_success_screen.dart';
 import 'package:konsrr/src/app/widgets/utils.dart';
@@ -136,6 +137,10 @@ class _ConfirmPaymentWidgetState extends State<ConfirmPaymentWidget> {
         .collection('bookings')
         .doc()
         .set(widget.booking.toData());
+    if (widget.booking.fromAds) {
+      final res = await Get.find<KonsrrApi>().incrementAdsConverted(widget.booking.adsId);
+      print(res);
+    }
     await Future.delayed(Duration(seconds: 1));
     setState(() {
       isLoading = false;

@@ -67,6 +67,7 @@ class AuthController extends GetxController {
   }
 
   Future signInWithGoogle() async {
+    Get.find<NavigationController>().changeIndex(0);
     if (FirebaseAuth.instance.currentUser != null) {
       _redirectAfterSignedIn();
       return;
@@ -100,8 +101,7 @@ class AuthController extends GetxController {
   Future signOut() async {
     await FirebaseAuth.instance.signOut();
     await google.signOut();
-    await Get.offAll(AuthScreen());
-    Get.find<NavigationController>().changeIndex(0);
+    await Get.off(AuthScreen());
   }
 
   DocumentReference get userDocument =>
