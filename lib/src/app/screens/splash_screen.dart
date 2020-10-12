@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Text(
-          'konsrr.',
+          'konsrr',
           style: AppThemes.titleTextStyle,
           textAlign: TextAlign.center,
         ),
